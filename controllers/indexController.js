@@ -14,9 +14,8 @@ exports.index = function(req, res) {
       return next(err);
     } else {
       let weather = JSON.parse(body);
-      let msg = `It's ${weather.weather.main} in ${city}.`
-      alert('body:' + body);
+      let msg = `It's ${weather.weather.main} in ${city}.`;
+      res.render('index', { title: 'Movie Suggestions', message: msg });
     }
-  })
-  res.render("index", { title: "Movie Suggestions", city: ip.city, country: ip.country });
+  });
 };
