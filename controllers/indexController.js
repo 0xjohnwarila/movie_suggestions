@@ -17,28 +17,28 @@ exports.index = function(req, res) {
       let weather = JSON.parse(body);
       let msg = 'weatherType';
       if(weather.weather[0].id > 800 && weather.weather[0].id < 805) {
-        let msg = 'Clouds';
+        msg = 'Clouds';
       }
       else if(weather.weather[0].id > 199 && weather.weather[0].id < 233) {
-        let msg = 'Thunder';
+        msg = 'Thunder';
       }
       else if(weather.weather[0].id > 299 && weather.weather[0].id < 322) {
-        let msg = 'Drizzle';
+        msg = 'Drizzle';
       }
       else if(weather.weather[0].id > 499 && weather.weather[0].id < 532) {
-        let msg = 'Rain';
+        msg = 'Rain';
       }
       else if(weather.weather[0].id > 599 && weather.weather[0].id < 623) {
-        let msg = 'Snow';
+        msg = 'Snow';
       }
       else if(weather.weather[0].id > 699 && weather.weather[0].id < 782) {
-        let msg = 'Atmosphere';
+        msg = 'Atmosphere';
       }
       else if(weather.weather[0].id == 800) {
-        let msg = 'Clear';
+        msg = 'Clear';
       }
       else {
-        let msg = 'err';
+        msg = 'err';
       }
       res.render('index', { title: 'Movie Suggestions', message: msg, code: weather.weather[0].id});
     }
