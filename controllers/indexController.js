@@ -15,6 +15,7 @@ exports.index = function(req, res) {
       return next(err);
     } else {
       let weather = JSON.parse(body);
+      let msg = 'weatherType';
       if(weather.weather[0].id > 800 && weather.weather[0].id < 805) {
         let msg = 'Clouds';
       }
