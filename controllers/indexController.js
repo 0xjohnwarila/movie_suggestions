@@ -92,42 +92,36 @@ exports.index = function(req, res) {
           return 0.5 - Math.random();
         });
         msg = documentary[0] + " " + documentary[1] + " " + documentary[2];
-        msg = "Thunder";
       } else if (weather.weather[0].id > 299 && weather.weather[0].id < 322) {
         // drizzle - drama
         documentary.sort(() => {
           return 0.5 - Math.random();
         });
         msg = documentary[0] + " " + documentary[1] + " " + documentary[2];
-        msg = "Drizzle";
       } else if (weather.weather[0].id > 499 && weather.weather[0].id < 532) {
         // rain - action
         documentary.sort(() => {
           return 0.5 - Math.random();
         });
         msg = documentary[0] + " " + documentary[1] + " " + documentary[2];
-        msg = "Rain";
       } else if (weather.weather[0].id > 599 && weather.weather[0].id < 623) {
         // snow - scifi
         documentary.sort(() => {
           return 0.5 - Math.random();
         });
         msg = documentary[0] + " " + documentary[1] + " " + documentary[2];
-        msg = "Snow";
       } else if (weather.weather[0].id > 699 && weather.weather[0].id < 782) {
         // atmosphere (mist/fog) - apocalypse
         documentary.sort(() => {
           return 0.5 - Math.random();
         });
         msg = documentary[0] + " " + documentary[1] + " " + documentary[2];
-        msg = "Atmosphere";
       } else if (weather.weather[0].id == 800) {
         // clear - comedy
         documentary.sort(() => {
           return 0.5 - Math.random();
         });
         msg = documentary[0] + " " + documentary[1] + " " + documentary[2];
-        msg = "Clear";
       } else {
         msg = "err";
       }
