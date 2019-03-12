@@ -14,7 +14,7 @@ exports.index = function(req, res) {
       return next(err);
     } else {
       let weather = JSON.parse(body);
-      let msg = `It's ${weather.weather} in ${city}.`;
+      let msg = body;
       res.render('index', { title: 'Movie Suggestions', message: msg });
     }
   });
