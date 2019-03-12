@@ -30,50 +30,49 @@ exports.index = function(req, res) {
     "tt0053137"
   ];
   const drama = [
-    'tt0111161',
-    'tt0109830',
-    'tt0031381',
-    'tt0108052',
-    'tt0167404',
-    'tt0120338'
+    "tt0111161",
+    "tt0109830",
+    "tt0031381",
+    "tt0108052",
+    "tt0167404",
+    "tt0120338"
   ];
   const action = [
-    'tt0095016',
-    'tt1375666',
-    'tt0266697',
-    'tt0120815',
-    'tt0440963',
-    'tt0106977',
-    'tt0381061'
+    "tt0095016",
+    "tt1375666",
+    "tt0266697",
+    "tt0120815",
+    "tt0440963",
+    "tt0106977",
+    "tt0381061"
   ];
   const thriller = [
-    'tt0468569',
-    'tt0107290',
-    'tt1396484',
-    'tt1454468',
-    'tt0073195',
-    'tt4912910',
-    'tt0382625'
+    "tt0468569",
+    "tt0107290",
+    "tt1396484",
+    "tt1454468",
+    "tt0073195",
+    "tt4912910",
+    "tt0382625"
   ];
   const documentary = [
-    'tt1772925',
-    'tt0317910',
-    'tt3518012',
-    'tt4044364',
-    'tt0110057',
-    'tt1559549',
-    'tt3578504'
+    "tt1772925",
+    "tt0317910",
+    "tt3518012",
+    "tt4044364",
+    "tt0110057",
+    "tt1559549",
+    "tt3578504"
   ];
   const scifi = [
-    'tt0499549',
-    'tt3748528',
-    'tt0080684',
-    'tt0796366',
-    'tt3659388',
-    'tt0816692',
-    'tt0075860'
-  ]
-  const 
+    "tt0499549",
+    "tt3748528",
+    "tt0080684",
+    "tt0796366",
+    "tt3659388",
+    "tt0816692",
+    "tt0075860"
+  ];
   // get weather request
   request(url, function(err, response, body) {
     if (err) {
@@ -83,37 +82,51 @@ exports.index = function(req, res) {
       let msg = "weatherType";
       if (weather.weather[0].id > 800 && weather.weather[0].id < 805) {
         // cloudy - documentary
-        documentary.sort( () => { return 0.5 - Math.random() })
-        msg = documentary[0] + ' ' + documentary[1] + ' ' + documentary[2];
+        documentary.sort(() => {
+          return 0.5 - Math.random();
+        });
+        msg = documentary[0] + " " + documentary[1] + " " + documentary[2];
       } else if (weather.weather[0].id > 199 && weather.weather[0].id < 233) {
         // thunder - thriller
-        documentary.sort( () => { return 0.5 - Math.random() })
-        msg = documentary[0] + ' ' + documentary[1] + ' ' + documentary[2];
+        documentary.sort(() => {
+          return 0.5 - Math.random();
+        });
+        msg = documentary[0] + " " + documentary[1] + " " + documentary[2];
         msg = "Thunder";
       } else if (weather.weather[0].id > 299 && weather.weather[0].id < 322) {
         // drizzle - drama
-        documentary.sort( () => { return 0.5 - Math.random() })
-        msg = documentary[0] + ' ' + documentary[1] + ' ' + documentary[2];
+        documentary.sort(() => {
+          return 0.5 - Math.random();
+        });
+        msg = documentary[0] + " " + documentary[1] + " " + documentary[2];
         msg = "Drizzle";
       } else if (weather.weather[0].id > 499 && weather.weather[0].id < 532) {
         // rain - action
-        documentary.sort( () => { return 0.5 - Math.random() })
-        msg = documentary[0] + ' ' + documentary[1] + ' ' + documentary[2];
+        documentary.sort(() => {
+          return 0.5 - Math.random();
+        });
+        msg = documentary[0] + " " + documentary[1] + " " + documentary[2];
         msg = "Rain";
       } else if (weather.weather[0].id > 599 && weather.weather[0].id < 623) {
         // snow - scifi
-        documentary.sort( () => { return 0.5 - Math.random() })
-        msg = documentary[0] + ' ' + documentary[1] + ' ' + documentary[2];
+        documentary.sort(() => {
+          return 0.5 - Math.random();
+        });
+        msg = documentary[0] + " " + documentary[1] + " " + documentary[2];
         msg = "Snow";
       } else if (weather.weather[0].id > 699 && weather.weather[0].id < 782) {
         // atmosphere (mist/fog) - apocalypse
-        documentary.sort( () => { return 0.5 - Math.random() })
-        msg = documentary[0] + ' ' + documentary[1] + ' ' + documentary[2];
+        documentary.sort(() => {
+          return 0.5 - Math.random();
+        });
+        msg = documentary[0] + " " + documentary[1] + " " + documentary[2];
         msg = "Atmosphere";
       } else if (weather.weather[0].id == 800) {
         // clear - comedy
-        documentary.sort( () => { return 0.5 - Math.random() })
-        msg = documentary[0] + ' ' + documentary[1] + ' ' + documentary[2];
+        documentary.sort(() => {
+          return 0.5 - Math.random();
+        });
+        msg = documentary[0] + " " + documentary[1] + " " + documentary[2];
         msg = "Clear";
       } else {
         msg = "err";
