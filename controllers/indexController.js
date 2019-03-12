@@ -19,7 +19,7 @@ exports.index = function(req, res) {
         res.render('index', { title: 'Movie Suggestions', message: msg, code: weather.weather[0].id});
       }
       else {
-        res.rener('index', { title: 'Movie Suggestions', message: 'err', code: weather.weather[0].id});
+        res.render('index', { title: 'Movie Suggestions', message: 'err', code: weather.weather[0].id});
       }
     }
   });
