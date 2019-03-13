@@ -17,6 +17,8 @@ function getWeather(url) {
     console.log("*****************");
     console.log("WEATHER REQ");
     console.log("*****************");
+    console.log(body);
+    console.log("*****************");
     return JSON.parse(body);
   });
 }
@@ -109,6 +111,7 @@ exports.index = function(req, res) {
 
   // get weather request
   let weather = getWeather(url);
+  console.log(weather.weather[0].id);
 
   if (weather.weather[0].id > 800 && weather.weather[0].id < 805) {
     // cloudy - documentary
