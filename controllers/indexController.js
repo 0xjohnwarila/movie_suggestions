@@ -3,10 +3,10 @@ const request = require("request");
 
 // This code is TERRIBLE. I'm sorry, close timetables from outside of project sucks.
 
-function Movie(title, plot, score) {
-  let title = title;
-  let plot = plot;
-  let score = score;
+function Movie(_title, _plot, _score) {
+  let title = _title;
+  let plot = _plot;
+  let score = _score;
 }
 
 function getMovieDetails(movieUrl) {
