@@ -157,6 +157,19 @@ exports.index = function(req, res) {
     });
     movieUrl = getMovieUrl(action, movieKey);
     getMovieDetails(Movie, movieUrl);
+    res.render("index", {
+      title: "Movie Suggestions",
+      city: ip.city,
+      movie_1: Movie.title_1,
+      movie_2: Movie.title_2,
+      movie_3: Movie.title_3,
+      movie_1_plot: Movie.plot_1,
+      movie_2_plot: Movie.plot_2,
+      movie_3_plot: Movie.plot_3,
+      movie_1_score: Movie.score_1,
+      movie_2_score: Movie.score_2,
+      movie_3_score: Movie.score_3
+    });
   } else if (weatherID > 599 && weatherID < 623) {
     // snow - scifi
     scifi.sort(() => {
@@ -187,17 +200,4 @@ exports.index = function(req, res) {
     });
     movieUrl = ` http://www.omdbapi.com/?i=${comedy[1]}&apikey=${movieKey}`;
   }
-  res.render("index", {
-    title: "Movie Suggestions",
-    city: ip.city,
-    movie_1: Movie.title_1,
-    movie_2: Movie.title_2,
-    movie_3: Movie.title_3,
-    movie_1_plot: Movie.plot_1,
-    movie_2_plot: Movie.plot_2,
-    movie_3_plot: Movie.plot_3,
-    movie_1_score: Movie.score_1,
-    movie_2_score: Movie.score_2,
-    movie_3_score: Movie.score_3
-  });
 };
