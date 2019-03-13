@@ -89,6 +89,9 @@ exports.index = function(req, res) {
       let movie_1_score = "movie_1_score";
       let movie_2_score = "movie_2_score";
       let movie_3_score = "movie_3_score";
+      // REMOVE THIS
+      let msg = "req not completed";
+
       if (weather.weather[0].id > 800 && weather.weather[0].id < 805) {
         // cloudy - documentary
         documentary.sort(() => {
@@ -223,40 +226,15 @@ exports.index = function(req, res) {
         movie_url = ` http://www.omdbapi.com/?i=${
           action[0]
         }&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
+        request(url, (err, response, req_body) => {
           if (err) {
             return next(err);
           } else {
-            let movie = JSON.parse(body);
+            let movie = JSON.parse(req_body);
             movie_1 = movie.Title;
             movie_1_plot = movie.Plot;
             movie_1_score = movie.Metascore;
-          }
-        });
-        movie_url = ` http://www.omdbapi.com/?i=${
-          action[1]
-        }&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_2 = movie.Title;
-            movie_2_plot = movie.Plot;
-            movie_2_score = movie.Metascore;
-          }
-        });
-        movie_url = ` http://www.omdbapi.com/?i=${
-          action[1]
-        }&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_3 = movie.Title;
-            movie_3_plot = movie.Plot;
-            movie_3_score = movie.Metascore;
+            msg = "req completed";
           }
         });
       } else if (weather.weather[0].id > 599 && weather.weather[0].id < 623) {
@@ -389,6 +367,7 @@ exports.index = function(req, res) {
       res.render("index", {
         title: "Movie Suggestions",
         city: ip.city,
+        msg: msg,
         movie_1: movie_1,
         movie_2: movie_2,
         movie_3: movie_3,
