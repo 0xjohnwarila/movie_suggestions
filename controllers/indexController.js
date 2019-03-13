@@ -5,6 +5,7 @@ const async = require("async");
 // This code is TERRIBLE. I'm sorry, close timetables from outside of project sucks.
 
 function getMovieDetails(Movie, movieUrl) {
+  console.log("GETMOVIEDETAILS");
   request(movieUrl[0], function(err, response, body) {
     Movie.title_1 = JSON.parse(body.Title);
     Movie.plot_1 = JSON.parse(body.Plot);
@@ -24,13 +25,10 @@ function getMovieDetails(Movie, movieUrl) {
   return Movie;
 }
 
-function getWeather(url) {
-  request(url, function(err, response, body) {
-    return JSON.parse(body).weather[0].id;
-  });
-}
+function getWeather(url) {}
 
 function getMovieUrl(genre, key) {
+  console.log("GETMOVIEURL");
   let arr = [];
   arr.push(`http://www.omdbapi.com/?i=${genre[0]}&apikey=${movieKey}`);
   arr.push(`http://www.omdbapi.com/?i=${genre[1]}&apikey=${movieKey}`);
@@ -125,7 +123,12 @@ exports.index = function(req, res) {
   };
 
   // get weather request
-  let weatherID = getWeather(url);
+  let weatherID = "err";
+  request(url, function(err, response, body) {
+    weatherID = JSON.parse(body).weather[0].id;
+    console.log(weatherID);
+  });
+  console.log(weatherID);
 
   if (weatherID > 800 && weatherID < 805) {
     // cloudy - documentary
