@@ -235,7 +235,9 @@ exports.index = function(req, res) {
         request(movieUrl, function(err, response, body) {
           let movie = JSON.parse(body);
           movie_1 = movie.Title;
+          console.log("*********");
           console.log(movie_1);
+          console.log("*********");
           movie_1_plot = movie.Plot;
           movie_1_score = movie.Metascore;
         });
