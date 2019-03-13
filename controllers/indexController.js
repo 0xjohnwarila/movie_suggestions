@@ -5,12 +5,18 @@ const request = require("request");
 
 function getMovieDetails(movieUrl) {
   request(movieUrl, function(err, response, body) {
+    console.log("*****************");
+    console.log("MOVIE REQ");
+    console.log("*****************");
     return JSON.parse(body);
   });
 }
 
 function getWeather(url) {
   request(url, function(err, response, body) {
+    console.log("*****************");
+    console.log("WEATHER REQ");
+    console.log("*****************");
     return JSON.parse(body);
   });
 }
