@@ -233,9 +233,10 @@ exports.index = function(req, res) {
         });
         movieUrl = `http://www.omdbapi.com/?i=${action[0]}&apikey=${movieKey}`;
         request(movieUrl, function(err, response, body) {
-          console.log(body);
           let movie = JSON.parse(body);
-          console.log(movie.Title);
+          movie_1 = movie.Title;
+          movie_1_plot = movie.Plot;
+          movie_1_score = movie.Metascore;
         });
       } else if (weather.weather[0].id > 599 && weather.weather[0].id < 623) {
         // snow - scifi
