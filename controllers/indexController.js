@@ -228,7 +228,7 @@ exports.index = function(req, res) {
         movie_url = ` http://www.omdbapi.com/?i=${
           action[0]
         }&apikey=${movieKey}`;
-        request(movie_url, (err, response, req_body) => {
+        request(movie_url, function(err, response, req_body) {
           if (err) {
             msg = "err";
             return next(err);
