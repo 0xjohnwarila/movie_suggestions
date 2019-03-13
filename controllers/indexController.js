@@ -19,7 +19,7 @@ function getWeather(url) {
     console.log("*****************");
     console.log(body);
     console.log("*****************");
-    return JSON.parse(body);
+    return JSON.parse(body).weather.id;
   });
 }
 
@@ -110,10 +110,10 @@ exports.index = function(req, res) {
   let msg = "req not completed";
 
   // get weather request
-  let weather = getWeather(url);
-  console.log(weather.weather[0].id);
+  let weatherID = getWeather(url);
+  console.log(weatherID);
 
-  if (weather.weather[0].id > 800 && weather.weather[0].id < 805) {
+  if (weatherID > 800 && weatherID < 805) {
     // cloudy - documentary
     documentary.sort(() => {
       return 0.5 - Math.random();
@@ -157,7 +157,7 @@ exports.index = function(req, res) {
         movie_3_score = movie.Metascore;
       }
     });
-  } else if (weather.weather[0].id > 199 && weather.weather[0].id < 233) {
+  } else if (weatherID > 199 && weatherID < 233) {
     // thunder - thriller
     thriller.sort(() => {
       return 0.5 - Math.random();
@@ -195,7 +195,7 @@ exports.index = function(req, res) {
         movie_3_score = movie.Metascore;
       }
     });
-  } else if (weather.weather[0].id > 299 && weather.weather[0].id < 322) {
+  } else if (weatherID > 299 && weatherID < 322) {
     // drizzle - drama
     drama.sort(() => {
       return 0.5 - Math.random();
@@ -233,7 +233,7 @@ exports.index = function(req, res) {
         movie_3_score = movie.Metascore;
       }
     });
-  } else if (weather.weather[0].id > 499 && weather.weather[0].id < 532) {
+  } else if (weatherID > 499 && weatherID < 532) {
     // rain - action
     action.sort(() => {
       return 0.5 - Math.random();
@@ -250,7 +250,7 @@ exports.index = function(req, res) {
     });
     console.log(movie_1);
     console.log("TEST");
-  } else if (weather.weather[0].id > 599 && weather.weather[0].id < 623) {
+  } else if (weatherID > 599 && weatherID < 623) {
     // snow - scifi
     scifi.sort(() => {
       return 0.5 - Math.random();
@@ -288,7 +288,7 @@ exports.index = function(req, res) {
         movie_3_score = movie.Metascore;
       }
     });
-  } else if (weather.weather[0].id > 699 && weather.weather[0].id < 782) {
+  } else if (weatherID > 699 && weatherID < 782) {
     // atmosphere (mist/fog) - apocalypse
     apocalypse.sort(() => {
       return 0.5 - Math.random();
@@ -326,7 +326,7 @@ exports.index = function(req, res) {
         movie_3_score = movie.Metascore;
       }
     });
-  } else if (weather.weather[0].id == 800) {
+  } else if (weatherID == 800) {
     // clear - comedy
     comedy.sort(() => {
       return 0.5 - Math.random();
