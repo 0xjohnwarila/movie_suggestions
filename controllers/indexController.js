@@ -22,7 +22,7 @@ function getMovieDetails(movieUrl) {
 
 function getWeather(url) {
   request(url, function(err, response, body) {
-    return JSON.parse(body).weather.id;
+    return JSON.parse(body).weather[0].id;
   });
 }
 
