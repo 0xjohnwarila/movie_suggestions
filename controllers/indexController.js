@@ -231,7 +231,7 @@ exports.index = function(req, res) {
         action.sort(() => {
           return 0.5 - Math.random();
         });
-        movieUrl = ` http://www.omdbapi.com/?i=${action[0]}&apikey=${movieKey}`;
+        movieUrl = `http://www.omdbapi.com/?i=${action[0]}&apikey=${movieKey}`;
         let movie = getMovieDetails(movieUrl);
         movie_1 = movie.Title;
         movie_1_plot = movie.Plot;
