@@ -1,6 +1,8 @@
 const expressip = require("express-ip");
 const request = require("request");
 
+// This code is TERRIBLE. I'm sorry, close timetables from outside of project sucks.
+
 // display homepage
 exports.index = function(req, res) {
   // get user location and the weather at location in sequence using async
@@ -226,7 +228,7 @@ exports.index = function(req, res) {
         movie_url = ` http://www.omdbapi.com/?i=${
           action[0]
         }&apikey=${movieKey}`;
-        request(url, (err, response, req_body) => {
+        request(movie_url, (err, response, req_body) => {
           if (err) {
             msg = "err";
             return next(err);
