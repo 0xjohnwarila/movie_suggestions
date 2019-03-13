@@ -228,6 +228,7 @@ exports.index = function(req, res) {
         }&apikey=${movieKey}`;
         request(url, (err, response, req_body) => {
           if (err) {
+            msg = "err";
             return next(err);
           } else {
             let movie = JSON.parse(req_body);
