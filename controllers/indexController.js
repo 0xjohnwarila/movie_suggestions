@@ -9,6 +9,12 @@ function getMovieDetails(movieUrl) {
   });
 }
 
+function getWeather(url) {
+  request(url, function(err, response, body) {
+    return JSON.parse(body);
+  });
+}
+
 // display homepage
 exports.index = function(req, res) {
   // get user location and the weather at location in sequence using async
@@ -82,302 +88,286 @@ exports.index = function(req, res) {
     "tt0816692",
     "tt0075860"
   ];
-  // get weather request
-  request(url, function(err, response, body) {
-    if (err) {
-      return next(err);
-    } else {
-      let weather = JSON.parse(body);
-      let movie_1 = "movie_1";
-      let movie_2 = "movie_2";
-      let movie_3 = "movie_3";
-      let movie_1_plot = "movie_1_plot";
-      let movie_2_plot = "movie_2_plot";
-      let movie_3_plot = "movie_3_plot";
-      let movie_1_score = "movie_1_score";
-      let movie_2_score = "movie_2_score";
-      let movie_3_score = "movie_3_score";
-      // REMOVE THIS
-      let msg = "req not completed";
 
-      if (weather.weather[0].id > 800 && weather.weather[0].id < 805) {
-        // cloudy - documentary
-        documentary.sort(() => {
-          return 0.5 - Math.random();
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${
-          documentary[0]
-        }&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_1 = movie.Title;
-            movie_1_plot = movie.Plot;
-            movie_1_score = movie.Metascore;
-          }
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${
-          documentary[1]
-        }&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_2 = movie.Title;
-            movie_2_plot = movie.Plot;
-            movie_2_score = movie.Metascore;
-          }
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${
-          documentary[1]
-        }&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_3 = movie.Title;
-            movie_3_plot = movie.Plot;
-            movie_3_score = movie.Metascore;
-          }
-        });
-      } else if (weather.weather[0].id > 199 && weather.weather[0].id < 233) {
-        // thunder - thriller
-        thriller.sort(() => {
-          return 0.5 - Math.random();
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${
-          thriller[0]
-        }&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_1 = movie.Title;
-            movie_1_plot = movie.Plot;
-            movie_1_score = movie.Metascore;
-          }
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${
-          thriller[1]
-        }&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_2 = movie.Title;
-            movie_2_plot = movie.Plot;
-            movie_2_score = movie.Metascore;
-          }
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${
-          thriller[1]
-        }&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_3 = movie.Title;
-            movie_3_plot = movie.Plot;
-            movie_3_score = movie.Metascore;
-          }
-        });
-      } else if (weather.weather[0].id > 299 && weather.weather[0].id < 322) {
-        // drizzle - drama
-        drama.sort(() => {
-          return 0.5 - Math.random();
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${drama[0]}&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_1 = movie.Title;
-            movie_1_plot = movie.Plot;
-            movie_1_score = movie.Metascore;
-          }
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${drama[1]}&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_2 = movie.Title;
-            movie_2_plot = movie.Plot;
-            movie_2_score = movie.Metascore;
-          }
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${drama[1]}&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_3 = movie.Title;
-            movie_3_plot = movie.Plot;
-            movie_3_score = movie.Metascore;
-          }
-        });
-      } else if (weather.weather[0].id > 499 && weather.weather[0].id < 532) {
-        // rain - action
-        action.sort(() => {
-          return 0.5 - Math.random();
-        });
-        movieUrl = `http://www.omdbapi.com/?i=${action[0]}&apikey=${movieKey}`;
-        request(movieUrl, function(err, response, body) {
-          let movie = JSON.parse(body);
-          movie_1 = movie.Title;
-          console.log("*********");
-          console.log(movie_1);
-          console.log("*********");
-          movie_1_plot = movie.Plot;
-          movie_1_score = movie.Metascore;
-        });
-        console.log(movie_1);
-        console.log("TEST");
-      } else if (weather.weather[0].id > 599 && weather.weather[0].id < 623) {
-        // snow - scifi
-        scifi.sort(() => {
-          return 0.5 - Math.random();
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${scifi[0]}&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_1 = movie.Title;
-            movie_1_plot = movie.Plot;
-            movie_1_score = movie.Metascore;
-          }
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${scifi[1]}&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_2 = movie.Title;
-            movie_2_plot = movie.Plot;
-            movie_2_score = movie.Metascore;
-          }
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${scifi[1]}&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_3 = movie.Title;
-            movie_3_plot = movie.Plot;
-            movie_3_score = movie.Metascore;
-          }
-        });
-      } else if (weather.weather[0].id > 699 && weather.weather[0].id < 782) {
-        // atmosphere (mist/fog) - apocalypse
-        apocalypse.sort(() => {
-          return 0.5 - Math.random();
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${
-          apocalypse[0]
-        }&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_1 = movie.Title;
-            movie_1_plot = movie.Plot;
-            movie_1_score = movie.Metascore;
-          }
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${
-          apocalypse[1]
-        }&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_2 = movie.Title;
-            movie_2_plot = movie.Plot;
-            movie_2_score = movie.Metascore;
-          }
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${
-          apocalypse[1]
-        }&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_3 = movie.Title;
-            movie_3_plot = movie.Plot;
-            movie_3_score = movie.Metascore;
-          }
-        });
-      } else if (weather.weather[0].id == 800) {
-        // clear - comedy
-        comedy.sort(() => {
-          return 0.5 - Math.random();
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${comedy[0]}&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_1 = movie.Title;
-            movie_1_plot = movie.Plot;
-            movie_1_score = movie.Metascore;
-          }
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${comedy[1]}&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_2 = movie.Title;
-            movie_2_plot = movie.Plot;
-            movie_2_score = movie.Metascore;
-          }
-        });
-        movieUrl = ` http://www.omdbapi.com/?i=${comedy[1]}&apikey=${movieKey}`;
-        request(url, (err, response, body) => {
-          if (err) {
-            return next(err);
-          } else {
-            let movie = JSON.parse(body);
-            movie_3 = movie.Title;
-            movie_3_plot = movie.Plot;
-            movie_3_score = movie.Metascore;
-          }
-        });
+  let movie_1 = "movie_1";
+  let movie_2 = "movie_2";
+  let movie_3 = "movie_3";
+  let movie_1_plot = "movie_1_plot";
+  let movie_2_plot = "movie_2_plot";
+  let movie_3_plot = "movie_3_plot";
+  let movie_1_score = "movie_1_score";
+  let movie_2_score = "movie_2_score";
+  let movie_3_score = "movie_3_score";
+  // REMOVE THIS
+  let msg = "req not completed";
+
+  // get weather request
+  let weather = getWeather(url);
+
+  if (weather.weather[0].id > 800 && weather.weather[0].id < 805) {
+    // cloudy - documentary
+    documentary.sort(() => {
+      return 0.5 - Math.random();
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${
+      documentary[0]
+    }&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_1 = movie.Title;
+        movie_1_plot = movie.Plot;
+        movie_1_score = movie.Metascore;
       }
-      res.render("index", {
-        title: "Movie Suggestions",
-        city: ip.city,
-        msg: msg,
-        movie_1: movie_1,
-        movie_2: movie_2,
-        movie_3: movie_3,
-        movie_1_plot: movie_1_plot,
-        movie_2_plot: movie_2_plot,
-        movie_3_plot: movie_3_plot,
-        movie_1_score: movie_1_score,
-        movie_2_score: movie_2_score,
-        movie_3_score: movie_3_score
-      });
-    }
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${
+      documentary[1]
+    }&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_2 = movie.Title;
+        movie_2_plot = movie.Plot;
+        movie_2_score = movie.Metascore;
+      }
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${
+      documentary[1]
+    }&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_3 = movie.Title;
+        movie_3_plot = movie.Plot;
+        movie_3_score = movie.Metascore;
+      }
+    });
+  } else if (weather.weather[0].id > 199 && weather.weather[0].id < 233) {
+    // thunder - thriller
+    thriller.sort(() => {
+      return 0.5 - Math.random();
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${thriller[0]}&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_1 = movie.Title;
+        movie_1_plot = movie.Plot;
+        movie_1_score = movie.Metascore;
+      }
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${thriller[1]}&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_2 = movie.Title;
+        movie_2_plot = movie.Plot;
+        movie_2_score = movie.Metascore;
+      }
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${thriller[1]}&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_3 = movie.Title;
+        movie_3_plot = movie.Plot;
+        movie_3_score = movie.Metascore;
+      }
+    });
+  } else if (weather.weather[0].id > 299 && weather.weather[0].id < 322) {
+    // drizzle - drama
+    drama.sort(() => {
+      return 0.5 - Math.random();
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${drama[0]}&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_1 = movie.Title;
+        movie_1_plot = movie.Plot;
+        movie_1_score = movie.Metascore;
+      }
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${drama[1]}&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_2 = movie.Title;
+        movie_2_plot = movie.Plot;
+        movie_2_score = movie.Metascore;
+      }
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${drama[1]}&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_3 = movie.Title;
+        movie_3_plot = movie.Plot;
+        movie_3_score = movie.Metascore;
+      }
+    });
+  } else if (weather.weather[0].id > 499 && weather.weather[0].id < 532) {
+    // rain - action
+    action.sort(() => {
+      return 0.5 - Math.random();
+    });
+    movieUrl = `http://www.omdbapi.com/?i=${action[0]}&apikey=${movieKey}`;
+    request(movieUrl, function(err, response, body) {
+      let movie = JSON.parse(body);
+      movie_1 = movie.Title;
+      console.log("*********");
+      console.log(movie_1);
+      console.log("*********");
+      movie_1_plot = movie.Plot;
+      movie_1_score = movie.Metascore;
+    });
+    console.log(movie_1);
+    console.log("TEST");
+  } else if (weather.weather[0].id > 599 && weather.weather[0].id < 623) {
+    // snow - scifi
+    scifi.sort(() => {
+      return 0.5 - Math.random();
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${scifi[0]}&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_1 = movie.Title;
+        movie_1_plot = movie.Plot;
+        movie_1_score = movie.Metascore;
+      }
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${scifi[1]}&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_2 = movie.Title;
+        movie_2_plot = movie.Plot;
+        movie_2_score = movie.Metascore;
+      }
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${scifi[1]}&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_3 = movie.Title;
+        movie_3_plot = movie.Plot;
+        movie_3_score = movie.Metascore;
+      }
+    });
+  } else if (weather.weather[0].id > 699 && weather.weather[0].id < 782) {
+    // atmosphere (mist/fog) - apocalypse
+    apocalypse.sort(() => {
+      return 0.5 - Math.random();
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${apocalypse[0]}&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_1 = movie.Title;
+        movie_1_plot = movie.Plot;
+        movie_1_score = movie.Metascore;
+      }
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${apocalypse[1]}&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_2 = movie.Title;
+        movie_2_plot = movie.Plot;
+        movie_2_score = movie.Metascore;
+      }
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${apocalypse[1]}&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_3 = movie.Title;
+        movie_3_plot = movie.Plot;
+        movie_3_score = movie.Metascore;
+      }
+    });
+  } else if (weather.weather[0].id == 800) {
+    // clear - comedy
+    comedy.sort(() => {
+      return 0.5 - Math.random();
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${comedy[0]}&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_1 = movie.Title;
+        movie_1_plot = movie.Plot;
+        movie_1_score = movie.Metascore;
+      }
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${comedy[1]}&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_2 = movie.Title;
+        movie_2_plot = movie.Plot;
+        movie_2_score = movie.Metascore;
+      }
+    });
+    movieUrl = ` http://www.omdbapi.com/?i=${comedy[1]}&apikey=${movieKey}`;
+    request(url, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        let movie = JSON.parse(body);
+        movie_3 = movie.Title;
+        movie_3_plot = movie.Plot;
+        movie_3_score = movie.Metascore;
+      }
+    });
+  }
+  res.render("index", {
+    title: "Movie Suggestions",
+    city: ip.city,
+    msg: msg,
+    movie_1: movie_1,
+    movie_2: movie_2,
+    movie_3: movie_3,
+    movie_1_plot: movie_1_plot,
+    movie_2_plot: movie_2_plot,
+    movie_3_plot: movie_3_plot,
+    movie_1_score: movie_1_score,
+    movie_2_score: movie_2_score,
+    movie_3_score: movie_3_score
   });
 };
