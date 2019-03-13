@@ -116,6 +116,7 @@ exports.index = function(req, res) {
   // get weather request
   let weatherID = getWeather(url);
   console.log(weatherID);
+  console.log("**************************************");
 
   if (weatherID > 800 && weatherID < 805) {
     // cloudy - documentary
