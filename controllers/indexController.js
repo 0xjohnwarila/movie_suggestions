@@ -4,18 +4,7 @@ const async = require("async");
 
 // This code is TERRIBLE. I'm sorry, close timetables from outside of project sucks.
 
-function getMovieDetails(movieUrl) {
-  var Movie = {
-    title_1: "t1",
-    title_2: "t2",
-    title_3: "t3",
-    plot_1: "p1",
-    plot_2: "p2",
-    plot_3: "p3",
-    score_1: "s1",
-    score_2: "s2",
-    score_3: "s3"
-  };
+function getMovieDetails(Movie, movieUrl) {
   request(movieUrl[0], function(err, response, body) {
     Movie.title_1 = JSON.parse(body.Title);
     Movie.plot_1 = JSON.parse(body.Plot);
@@ -123,7 +112,17 @@ exports.index = function(req, res) {
     "tt0075860"
   ];
 
-  let movie = new Movie("title", "plot", "score");
+  var Movie = {
+    title_1: "t1",
+    title_2: "t2",
+    title_3: "t3",
+    plot_1: "p1",
+    plot_2: "p2",
+    plot_3: "p3",
+    score_1: "s1",
+    score_2: "s2",
+    score_3: "s3"
+  };
 
   // get weather request
   let weatherID = getWeather(url);
@@ -154,7 +153,7 @@ exports.index = function(req, res) {
       return 0.5 - Math.random();
     });
     movieUrl = getMovieUrl(action, movieKey);
-    getMovieDetails(movieUrl);
+    getMovieDetails(Movie, movieUrl);
   } else if (weatherID > 599 && weatherID < 623) {
     // snow - scifi
     scifi.sort(() => {
@@ -188,14 +187,14 @@ exports.index = function(req, res) {
   res.render("index", {
     title: "Movie Suggestions",
     city: ip.city,
-    movie_1: movie.title_1,
-    movie_2: movie.title_2,
-    movie_3: movie.title_3,
-    movie_1_plot: movie.plot_1,
-    movie_2_plot: movie.plot_2,
-    movie_3_plot: movie.plot_3,
-    movie_1_score: movie.score_1,
-    movie_2_score: movie.score_2,
-    movie_3_score: movie.score_3
+    movie_1: Movie.title_1,
+    movie_2: Movie.title_2,
+    movie_3: Movie.title_3,
+    movie_1_plot: Movie.plot_1,
+    movie_2_plot: Movie.plot_2,
+    movie_3_plot: Movie.plot_3,
+    movie_1_score: Movie.score_1,
+    movie_2_score: Movie.score_2,
+    movie_3_score: Movie.score_3
   });
 };
