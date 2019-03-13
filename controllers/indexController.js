@@ -14,6 +14,8 @@ function getMovieDetails(movieUrl) {
     let _title = JSON.parse(body.Title);
     let _plot = JSON.parse(body.Plot);
     let _score = JSON.parse(body.Metascore);
+    console.log(_title);
+    console.log("***********\n");
     return new Movie(_title, _plot, _score);
   });
 }
@@ -241,6 +243,7 @@ exports.index = function(req, res) {
       return 0.5 - Math.random();
     });
     movieUrl = `http://www.omdbapi.com/?i=${action[0]}&apikey=${movieKey}`;
+    console.log("RAINING");
     movie = getMovieDetails(movieUrl);
     movie_1 = movie.title;
     movie_1_plot = movie.plot;
