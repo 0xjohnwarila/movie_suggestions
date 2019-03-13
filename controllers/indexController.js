@@ -125,9 +125,10 @@ exports.index = function(req, res) {
     return { title, plot, score };
   };
 
-  // get weather request
+  // get weather ID
   const weatherID = getWeatherData(url);
 
+  // choose genre based on weather ID
   if (weatherID > 800 && weatherID < 805) {
     // cloudy - documentary
 
