@@ -97,6 +97,7 @@ exports.index = function(req, res) {
       let movie_1_score = "movie_1_score";
       let movie_2_score = "movie_2_score";
       let movie_3_score = "movie_3_score";
+      let movie = {};
       // REMOVE THIS
       let msg = "req not completed";
 
@@ -232,7 +233,7 @@ exports.index = function(req, res) {
           return 0.5 - Math.random();
         });
         movieUrl = `http://www.omdbapi.com/?i=${action[0]}&apikey=${movieKey}`;
-        let movie = getMovieDetails(movieUrl);
+        movie = getMovieDetails(movieUrl);
         movie_1 = movie.Title;
         movie_1_plot = movie.Plot;
         movie_1_score = movie.Metascore;
