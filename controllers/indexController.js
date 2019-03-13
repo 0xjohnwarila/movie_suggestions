@@ -3,22 +3,23 @@ const request = require("request");
 
 // This code is TERRIBLE. I'm sorry, close timetables from outside of project sucks.
 
+function Movie(title, plot, score) {
+  let title = title;
+  let plot = plot;
+  let score = score;
+}
+
 function getMovieDetails(movieUrl) {
   request(movieUrl, function(err, response, body) {
-    console.log("*****************");
-    console.log("MOVIE REQ");
-    console.log("*****************");
-    return JSON.parse(body);
+    let _title = JSON.parse(body.Title);
+    let _plot = JSON.parse(body.Plot);
+    let _score = JSON.parse(body.Metascore);
+    return new Movie(_title, _plot, _score);
   });
 }
 
 function getWeather(url) {
   request(url, function(err, response, body) {
-    console.log("*****************");
-    console.log("WEATHER REQ");
-    console.log("*****************");
-    console.log(body);
-    console.log("*****************");
     return JSON.parse(body).weather.id;
   });
 }
@@ -106,6 +107,7 @@ exports.index = function(req, res) {
   let movie_1_score = "movie_1_score";
   let movie_2_score = "movie_2_score";
   let movie_3_score = "movie_3_score";
+  let movie = new Movie("title", "plot", "score");
   // REMOVE THIS
   let msg = "req not completed";
 
@@ -239,15 +241,10 @@ exports.index = function(req, res) {
       return 0.5 - Math.random();
     });
     movieUrl = `http://www.omdbapi.com/?i=${action[0]}&apikey=${movieKey}`;
-    request(movieUrl, function(err, response, body) {
-      let movie = JSON.parse(body);
-      movie_1 = movie.Title;
-      console.log("*********");
-      console.log(movie_1);
-      console.log("*********");
-      movie_1_plot = movie.Plot;
-      movie_1_score = movie.Metascore;
-    });
+    movie = getMovieDetails(movieUrl);
+    movie_1 = movie.title;
+    movie_1_plot = movie.plot;
+    movie_1_score = movie.score;
     console.log(movie_1);
     console.log("TEST");
   } else if (weatherID > 599 && weatherID < 623) {
