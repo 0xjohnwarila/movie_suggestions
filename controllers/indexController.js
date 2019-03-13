@@ -242,6 +242,7 @@ exports.index = function(req, res) {
           movie_1_score = movie.Metascore;
         });
         console.log(movie_1);
+        console.log("TEST");
       } else if (weather.weather[0].id > 599 && weather.weather[0].id < 623) {
         // snow - scifi
         scifi.sort(() => {
