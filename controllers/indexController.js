@@ -235,9 +235,11 @@ exports.index = function(req, res) {
         request(movieUrl, function(err, response, body) {
           let movie = JSON.parse(body);
           movie_1 = movie.Title;
+          console.log(movie_1);
           movie_1_plot = movie.Plot;
           movie_1_score = movie.Metascore;
         });
+        console.log(movie_1);
       } else if (weather.weather[0].id > 599 && weather.weather[0].id < 623) {
         // snow - scifi
         scifi.sort(() => {
