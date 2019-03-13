@@ -3,6 +3,12 @@ const request = require("request");
 
 // This code is TERRIBLE. I'm sorry, close timetables from outside of project sucks.
 
+function getMovieDetails(movieUrl) {
+  request(movieUrl, function(err, response, body) {
+    return JSON.parse(body);
+  });
+}
+
 // display homepage
 exports.index = function(req, res) {
   // get user location and the weather at location in sequence using async
@@ -99,7 +105,7 @@ exports.index = function(req, res) {
         documentary.sort(() => {
           return 0.5 - Math.random();
         });
-        movie_url = ` http://www.omdbapi.com/?i=${
+        movieUrl = ` http://www.omdbapi.com/?i=${
           documentary[0]
         }&apikey=${movieKey}`;
         request(url, (err, response, body) => {
@@ -112,7 +118,7 @@ exports.index = function(req, res) {
             movie_1_score = movie.Metascore;
           }
         });
-        movie_url = ` http://www.omdbapi.com/?i=${
+        movieUrl = ` http://www.omdbapi.com/?i=${
           documentary[1]
         }&apikey=${movieKey}`;
         request(url, (err, response, body) => {
@@ -125,7 +131,7 @@ exports.index = function(req, res) {
             movie_2_score = movie.Metascore;
           }
         });
-        movie_url = ` http://www.omdbapi.com/?i=${
+        movieUrl = ` http://www.omdbapi.com/?i=${
           documentary[1]
         }&apikey=${movieKey}`;
         request(url, (err, response, body) => {
@@ -143,7 +149,7 @@ exports.index = function(req, res) {
         thriller.sort(() => {
           return 0.5 - Math.random();
         });
-        movie_url = ` http://www.omdbapi.com/?i=${
+        movieUrl = ` http://www.omdbapi.com/?i=${
           thriller[0]
         }&apikey=${movieKey}`;
         request(url, (err, response, body) => {
@@ -156,7 +162,7 @@ exports.index = function(req, res) {
             movie_1_score = movie.Metascore;
           }
         });
-        movie_url = ` http://www.omdbapi.com/?i=${
+        movieUrl = ` http://www.omdbapi.com/?i=${
           thriller[1]
         }&apikey=${movieKey}`;
         request(url, (err, response, body) => {
@@ -169,7 +175,7 @@ exports.index = function(req, res) {
             movie_2_score = movie.Metascore;
           }
         });
-        movie_url = ` http://www.omdbapi.com/?i=${
+        movieUrl = ` http://www.omdbapi.com/?i=${
           thriller[1]
         }&apikey=${movieKey}`;
         request(url, (err, response, body) => {
@@ -187,7 +193,7 @@ exports.index = function(req, res) {
         drama.sort(() => {
           return 0.5 - Math.random();
         });
-        movie_url = ` http://www.omdbapi.com/?i=${drama[0]}&apikey=${movieKey}`;
+        movieUrl = ` http://www.omdbapi.com/?i=${drama[0]}&apikey=${movieKey}`;
         request(url, (err, response, body) => {
           if (err) {
             return next(err);
@@ -198,7 +204,7 @@ exports.index = function(req, res) {
             movie_1_score = movie.Metascore;
           }
         });
-        movie_url = ` http://www.omdbapi.com/?i=${drama[1]}&apikey=${movieKey}`;
+        movieUrl = ` http://www.omdbapi.com/?i=${drama[1]}&apikey=${movieKey}`;
         request(url, (err, response, body) => {
           if (err) {
             return next(err);
@@ -209,7 +215,7 @@ exports.index = function(req, res) {
             movie_2_score = movie.Metascore;
           }
         });
-        movie_url = ` http://www.omdbapi.com/?i=${drama[1]}&apikey=${movieKey}`;
+        movieUrl = ` http://www.omdbapi.com/?i=${drama[1]}&apikey=${movieKey}`;
         request(url, (err, response, body) => {
           if (err) {
             return next(err);
@@ -225,27 +231,17 @@ exports.index = function(req, res) {
         action.sort(() => {
           return 0.5 - Math.random();
         });
-        movie_url = ` http://www.omdbapi.com/?i=${
-          action[0]
-        }&apikey=${movieKey}`;
-        request(movie_url, function(err, response, req_body) {
-          if (err) {
-            msg = "err";
-            return next(err);
-          } else {
-            let movie = JSON.parse(req_body);
-            movie_1 = movie.Title;
-            movie_1_plot = movie.Plot;
-            movie_1_score = movie.Metascore;
-            msg = "req completed";
-          }
-        });
+        movieUrl = ` http://www.omdbapi.com/?i=${action[0]}&apikey=${movieKey}`;
+        let movie = getMovieDetails(movieUrl);
+        movie_1 = movie.Title;
+        movie_1_plot = movie.Plot;
+        movie_1_score = movie.Metascore;
       } else if (weather.weather[0].id > 599 && weather.weather[0].id < 623) {
         // snow - scifi
         scifi.sort(() => {
           return 0.5 - Math.random();
         });
-        movie_url = ` http://www.omdbapi.com/?i=${scifi[0]}&apikey=${movieKey}`;
+        movieUrl = ` http://www.omdbapi.com/?i=${scifi[0]}&apikey=${movieKey}`;
         request(url, (err, response, body) => {
           if (err) {
             return next(err);
@@ -256,7 +252,7 @@ exports.index = function(req, res) {
             movie_1_score = movie.Metascore;
           }
         });
-        movie_url = ` http://www.omdbapi.com/?i=${scifi[1]}&apikey=${movieKey}`;
+        movieUrl = ` http://www.omdbapi.com/?i=${scifi[1]}&apikey=${movieKey}`;
         request(url, (err, response, body) => {
           if (err) {
             return next(err);
@@ -267,7 +263,7 @@ exports.index = function(req, res) {
             movie_2_score = movie.Metascore;
           }
         });
-        movie_url = ` http://www.omdbapi.com/?i=${scifi[1]}&apikey=${movieKey}`;
+        movieUrl = ` http://www.omdbapi.com/?i=${scifi[1]}&apikey=${movieKey}`;
         request(url, (err, response, body) => {
           if (err) {
             return next(err);
@@ -283,7 +279,7 @@ exports.index = function(req, res) {
         apocalypse.sort(() => {
           return 0.5 - Math.random();
         });
-        movie_url = ` http://www.omdbapi.com/?i=${
+        movieUrl = ` http://www.omdbapi.com/?i=${
           apocalypse[0]
         }&apikey=${movieKey}`;
         request(url, (err, response, body) => {
@@ -296,7 +292,7 @@ exports.index = function(req, res) {
             movie_1_score = movie.Metascore;
           }
         });
-        movie_url = ` http://www.omdbapi.com/?i=${
+        movieUrl = ` http://www.omdbapi.com/?i=${
           apocalypse[1]
         }&apikey=${movieKey}`;
         request(url, (err, response, body) => {
@@ -309,7 +305,7 @@ exports.index = function(req, res) {
             movie_2_score = movie.Metascore;
           }
         });
-        movie_url = ` http://www.omdbapi.com/?i=${
+        movieUrl = ` http://www.omdbapi.com/?i=${
           apocalypse[1]
         }&apikey=${movieKey}`;
         request(url, (err, response, body) => {
@@ -327,9 +323,7 @@ exports.index = function(req, res) {
         comedy.sort(() => {
           return 0.5 - Math.random();
         });
-        movie_url = ` http://www.omdbapi.com/?i=${
-          comedy[0]
-        }&apikey=${movieKey}`;
+        movieUrl = ` http://www.omdbapi.com/?i=${comedy[0]}&apikey=${movieKey}`;
         request(url, (err, response, body) => {
           if (err) {
             return next(err);
@@ -340,9 +334,7 @@ exports.index = function(req, res) {
             movie_1_score = movie.Metascore;
           }
         });
-        movie_url = ` http://www.omdbapi.com/?i=${
-          comedy[1]
-        }&apikey=${movieKey}`;
+        movieUrl = ` http://www.omdbapi.com/?i=${comedy[1]}&apikey=${movieKey}`;
         request(url, (err, response, body) => {
           if (err) {
             return next(err);
@@ -353,9 +345,7 @@ exports.index = function(req, res) {
             movie_2_score = movie.Metascore;
           }
         });
-        movie_url = ` http://www.omdbapi.com/?i=${
-          comedy[1]
-        }&apikey=${movieKey}`;
+        movieUrl = ` http://www.omdbapi.com/?i=${comedy[1]}&apikey=${movieKey}`;
         request(url, (err, response, body) => {
           if (err) {
             return next(err);
