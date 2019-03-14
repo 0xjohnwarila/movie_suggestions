@@ -1,9 +1,14 @@
 const expressip = require("express-ip");
-const request = require("request");
 const async = require("async");
 const fetch = require("node-fetch");
 
 // This code is better than it was, still a lot of ineffeciency...
+
+// TODO
+// 0. Encapsulate all requests in async functions
+// 1. Have res.renders in async functions to ensure that the data is correct when we render
+// 3. Make it work without breaking everything
+
 // display homepage
 exports.index = function(req, res) {
   // get user location and the weather at location in sequence using async
@@ -80,10 +85,14 @@ exports.index = function(req, res) {
 
   const getWeatherData = async url => {
     try {
+      // call api and await the results
       const response = await fetch(url);
+      // when the results come in, store the json
       const json = await response.json();
+      // return the weather ID from the json
       return json.weather[0].id;
     } catch (err) {
+      // error handling
       return next(err);
     }
   };
