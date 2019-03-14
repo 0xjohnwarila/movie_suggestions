@@ -223,6 +223,8 @@ exports.index = function(req, res, next) {
     ];
   }
 
+  console.log(movieUrl[0] + movieUrl[1] + movieUrl[2]);
+
   const movieSelections = getMovieData(movieUrl);
   movieSelections.then(function(result) {
     const {
