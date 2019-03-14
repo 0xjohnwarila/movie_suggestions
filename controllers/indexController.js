@@ -5,7 +5,7 @@ const fetch = require("node-fetch");
 
 // This code is better than it was, still a lot of ineffeciency...
 // display homepage
-exports.index = function(req, res) {
+exports.index = function(req, res, next) {
   // get user location and the weather at location in sequence using async
   const ip = req.ipInfo;
   // this API key would be obfuscated, but the access it has is limited
