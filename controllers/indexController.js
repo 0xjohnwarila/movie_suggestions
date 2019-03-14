@@ -118,17 +118,17 @@ exports.index = function(req, res, next) {
     }
   };
 
-  const getMovieData = async url => {
+  const getMovieData = async movieUrl => {
     try {
-      const title0 = await getMovieTitle(url[0]);
-      const plot0 = await getMoviePlot(url[0]);
-      const score0 = await getMovieScore(url[0]);
-      const title1 = await getMovieTitle(url[1]);
-      const plot1 = await getMoviePlot(url[1]);
-      const score1 = await getMovieScore(url[1]);
-      const title2 = await getMovieTitle(url[2]);
-      const plot2 = await getMoviePlot(url[2]);
-      const score2 = await getMovieScore(url[2]);
+      const title0 = await getMovieTitle(movieUrl[0]);
+      const plot0 = await getMoviePlot(movieUrl[0]);
+      const score0 = await getMovieScore(movieUrl[0]);
+      const title1 = await getMovieTitle(movieUrl[1]);
+      const plot1 = await getMoviePlot(movieUrl[1]);
+      const score1 = await getMovieScore(movieUrl[1]);
+      const title2 = await getMovieTitle(movieUrl[2]);
+      const plot2 = await getMoviePlot(movieUrl[2]);
+      const score2 = await getMovieScore(movieUrl[2]);
       return {
         title0,
         plot0,
@@ -223,7 +223,7 @@ exports.index = function(req, res, next) {
     ];
   }
 
-  const movieSelections = getMovieData(url);
+  const movieSelections = getMovieData(movieUrl);
   movieSelections.then(function(result) {
     const {
       title0,
