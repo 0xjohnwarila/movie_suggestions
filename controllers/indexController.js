@@ -241,6 +241,7 @@ exports.index = function(req, res, next) {
         score2
       } = result;
       res.render("index", {
+        city: city,
         movie_1: title0,
         movie_1_plot: plot0,
         movie_1_score: score0,
